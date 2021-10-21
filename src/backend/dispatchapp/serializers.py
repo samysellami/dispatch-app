@@ -8,7 +8,12 @@ class NotificationSerializer(serializers.ModelSerializer):
         model = Notification
         fields = '__all__'
 
-    def validate_message(self, message):
-        if len(message) > 10000:
+    def validate_message(self, value):
+        if len(value) > 1000:
             raise serializers.ValidationError("This message is way too long!!")
-        return message
+        return value
+
+    def validate_subject(self, value):
+        if len(value) > 1000:
+            raise serializers.ValidationError("This subject is way too long!!")
+        return value
