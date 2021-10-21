@@ -140,4 +140,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.live.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'amethyst_test@hotmail.com'
+DEFAULT_FROM_EMAIL = 'amethyst_test@hotmail.com'
 EMAIL_HOST_PASSWORD = 'crystal88S*'
