@@ -13,28 +13,34 @@ from .serializers import NotificationSerializer
 class DispatchAPIView(APIView):
     permission_classes = []
 
-    # def get(self, request):
-    #     return Response(notification)
-
     def post(self, request):
         data = request.data
 
-        name = data['name'],
-        email = data['email'],
-        message = data['message'],
+        # extracting the data from the request
+        name = data['name']
+        email = data['email']
+        message = data['message']
 
-        notif = Notification.objects.create(
-            name=name,
-            email=email,
-            message=message,
+        try:
+            # creating the instance object
+            notif = Notification.objects.create(
+                name=name,
+                email=email,
+                message=message,
+            )
+            # serializing the data for validation
+            serializer = NotificationSerializer(notif, many=False)
+        except:
+            errorMessage = {"detail": "Something went wrong!!"}
+            return Response(errorMessage, status=status.HTTP_400_BAD_REQUEST)
+
+        # send the email using the send_mail django function
+        send_mail(
+            'subject',
+            message,
+            None,
+            [email],
+            fail_silently=False
         )
-        serializer = NotificationSerializer(notif, many=False)
-        # send_mail(
-        #     'subject',
-        #     'This is a notification',
-        #     'amethyst_test@hotmail.com',
-        #     ['samy.sellami@hotmail.com'],
-        #     fail_silently=False
-        # )
 
         return Response(serializer.data)
