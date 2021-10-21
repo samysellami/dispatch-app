@@ -1,7 +1,8 @@
 notification = [
     {
         'name': 'Sellami Sami',
-        'email': 's.sellami@innopolis.university',
+        'subject': 'notification',
+        'email': 'samy.sellami@hotmail.com',
         'message': 'This is a notification'
     }
 ]
