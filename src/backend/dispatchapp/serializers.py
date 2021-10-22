@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Notification
+from django.core.validators import RegexValidator
 
 
 class NotificationSerializer(serializers.ModelSerializer):
