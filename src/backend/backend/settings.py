@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'dispatchapp.apps.DispatchappConfig'
+    'dispatchapp.apps.DispatchappConfig',
+    'phonenumber_field',
 ]
 
 REST_FRAMEWORK = {
@@ -142,3 +143,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'amethyst_test@hotmail.com'
 DEFAULT_FROM_EMAIL = 'amethyst_test@hotmail.com'
 EMAIL_HOST_PASSWORD = 'crystal88S*'
+TWILIO_ACCOUNT_SID = 'AC3adfe7dbbc6468b1c1c6a8ea379835f4'
+TWILIO_AUTH_TOKEN = '65df75a1faecf53359ef10e4ea52d21e'
