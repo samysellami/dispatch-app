@@ -22,52 +22,48 @@ class DispatchAPIView(APIView):
 
         # extracting the data from the request
         data = request.data
-        name = data['name']
-        subject = data['subject']
-        email = data['email']
-        message = data['message']
-        phone = data['phone']
+        name = data.get('name', None)
+        subject = data.get('subject', None)
+        email = data.get('email', None)
+        message = data.get('message', None)
+        phoneNumber = data.get('phoneNumber', None)
 
         try:
-            # creating the instance object
-            notif = Notification.objects.create(
-                name=name,
-                subject=subject,
-                email=email,
-                message=message,
-                phoneNumber=phone,
-            )
             # serializing the data for validation
             serializer = NotificationSerializer(data=data, many=False)
             serializer.is_valid(raise_exception=True)
+            serializer.save()
+
         except ValidationError as error:
             return Response({"detail": error}, status=status.HTTP_400_BAD_REQUEST)
 
         # sending the email using the send_mail django function
-        send_mail(
-            subject,
-            message,
-            None,
-            [email],
-            fail_silently=False
-        )
-
-        # Sending sms using TWILIO
-        try:
-            account_sid = TWILIO_ACCOUNT_SID
-            auth_token = TWILIO_AUTH_TOKEN
-            client = Client(account_sid, auth_token)
-
-            message = client.messages.create(
-                body=message,
-                from_='+13868544713',
-                to=phone
+        if email is not None:
+            send_mail(
+                subject,
+                message,
+                None,
+                [email],
+                fail_silently=False
             )
-        except:
-            return Response(
-                {"detail": 'Cannot send a message to this phone number!!'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+
+        # Sending SMS using TWILIO
+        if phoneNumber is not None:
+            try:
+                account_sid = TWILIO_ACCOUNT_SID
+                auth_token = TWILIO_AUTH_TOKEN
+                client = Client(account_sid, auth_token)
+
+                message = client.messages.create(
+                    body=message,
+                    from_='+13868544713',
+                    to=phoneNumber
+                )
+            except:
+                return Response(
+                    {"detail": 'Cannot send a message to this phone number!!'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
         data_ = serializer.data
         data_['detail'] = "Thank you for your notification, plase verify you email!!"
