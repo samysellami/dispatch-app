@@ -22,6 +22,7 @@ class DispatchAPIView(APIView):
 
         # extracting the data from the request
         data = request.data
+        print('data= ', data)
         name = data.get('name', None)
         subject = data.get('subject', None)
         email = data.get('email', None)
@@ -39,6 +40,7 @@ class DispatchAPIView(APIView):
 
         # sending the email using the send_mail django function
         if email is not None:
+            print('send')
             send_mail(
                 subject,
                 message,
@@ -48,7 +50,7 @@ class DispatchAPIView(APIView):
             )
 
         # Sending SMS using TWILIO
-        if phoneNumber is not None:
+        if (len(phoneNumber) != 0):
             try:
                 account_sid = TWILIO_ACCOUNT_SID
                 auth_token = TWILIO_AUTH_TOKEN
@@ -57,7 +59,7 @@ class DispatchAPIView(APIView):
                 message = client.messages.create(
                     body=message,
                     from_='+13868544713',
-                    to=phoneNumber
+                    to=str(phoneNumber)
                 )
             except:
                 return Response(
@@ -66,5 +68,5 @@ class DispatchAPIView(APIView):
                 )
 
         data_ = serializer.data
-        data_['detail'] = "Thank you for your notification, plase verify you email!!"
+        data_['detail'] = "Thank you for your notification, plase check you email!!"
         return Response(data_, status=status.HTTP_201_CREATED)
