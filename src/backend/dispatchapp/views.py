@@ -35,12 +35,13 @@ class DispatchAPIView(APIView):
             serializer.is_valid(raise_exception=True)
             serializer.save()
 
-        except ValidationError as error:
-            return Response({"detail": error}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response(
+                {"detail": 'Invalid data, please correct your input and try again!!'},
+                status=status.HTTP_400_BAD_REQUEST)
 
         # sending the email using the send_mail django function
-        if email is not None:
-            print('send')
+        if (email is not None) and (len(email) != 0):
             send_mail(
                 subject,
                 message,
@@ -50,7 +51,7 @@ class DispatchAPIView(APIView):
             )
 
         # Sending SMS using TWILIO
-        if (len(phoneNumber) != 0):
+        if (phoneNumber is not None) and (len(phoneNumber) != 0):
             try:
                 account_sid = TWILIO_ACCOUNT_SID
                 auth_token = TWILIO_AUTH_TOKEN
@@ -59,7 +60,7 @@ class DispatchAPIView(APIView):
                 message = client.messages.create(
                     body=message,
                     from_='+13868544713',
-                    to=str(phoneNumber)
+                    to=phoneNumber
                 )
             except:
                 return Response(

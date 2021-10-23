@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'corsheaders',
     'dispatchapp.apps.DispatchappConfig',
     'phonenumber_field',
 ]
@@ -51,6 +52,8 @@ REST_FRAMEWORK = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -134,6 +137,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # EMAIL_USE_SSL = False
@@ -144,4 +148,4 @@ EMAIL_HOST_USER = 'amethyst_test@hotmail.com'
 DEFAULT_FROM_EMAIL = 'amethyst_test@hotmail.com'
 EMAIL_HOST_PASSWORD = 'crystal88S*'
 TWILIO_ACCOUNT_SID = 'AC3adfe7dbbc6468b1c1c6a8ea379835f4'
-TWILIO_AUTH_TOKEN = '65df75a1faecf53359ef10e4ea52d21e'
+TWILIO_AUTH_TOKEN = 'f3faa52aafa60ccda43cbff75d936648'
