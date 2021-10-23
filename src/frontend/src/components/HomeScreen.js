@@ -84,7 +84,7 @@ function HomeScreen() {
                         <Form.Group className='mb-3' controlId='email'>
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control
-                                // required
+                                required
                                 type='email'
                                 placeholder='name@example.com'
                                 value={email}
@@ -117,6 +117,7 @@ function HomeScreen() {
                         <Form.Group className='mb-3' controlId='message'>
                             <Form.Label>Message</Form.Label>
                             <Form.Control
+                                required
                                 type='textarea'
                                 placeholder='Your message'
                                 value={message}

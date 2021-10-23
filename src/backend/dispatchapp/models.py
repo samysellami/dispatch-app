@@ -8,7 +8,7 @@ from django.core.validators import EmailValidator
 class Notification(models.Model):
     phoneNumber_valid = RegexValidator(
         regex=r"^\+?7?\d{8,15}$", message='invalid phone number, please use the format +7xxxxxxxxxx')
-    email_valid = EmailValidator(message='invalid email, please use the format xxx@xxx.xx')
+    email_valid = EmailValidator(message='invalid email, please use the format name@example.com')
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100, null=True, blank=True)
