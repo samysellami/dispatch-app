@@ -12,7 +12,7 @@ class Notification(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100, null=True, blank=True)
-    email = models.EmailField(max_length=254, validators=[email_valid])
+    email = models.EmailField(max_length=254, validators=[email_valid], null=True, blank=True)
     phoneNumber = models.CharField(validators=[phoneNumber_valid], max_length=16, null=True, blank=True)
     subject = models.CharField(max_length=100, null=True, blank=True)
     message = models.TextField(max_length=254, null=True, blank=True)
