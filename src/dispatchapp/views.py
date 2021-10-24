@@ -14,7 +14,7 @@ from backend.settings import TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
 
 
 class DispatchAPIView(APIView):
-    permission_classes = []
+    # permission_classes = []
 
     # our API contain only the post method, one can decide to include the put, list, and delete method as well
     def post(self, request, *args, **kwargs):
