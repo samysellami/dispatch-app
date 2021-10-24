@@ -3,5 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.DispatchAPIView.as_view()),
+    path('', views.DispatchAPIView.as_view(), name='notif-create'),
 ]
+
+app_name = 'dipatchapp'

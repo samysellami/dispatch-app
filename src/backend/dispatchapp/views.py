@@ -22,7 +22,7 @@ class DispatchAPIView(APIView):
 
         # extracting the data from the request
         data = request.data
-        print('data= ', data)
+        # print('data= ', data)
         name = data.get('name', None)
         subject = data.get('subject', None)
         email = data.get('email', None)
@@ -64,7 +64,7 @@ class DispatchAPIView(APIView):
                 )
             except:
                 return Response(
-                    {"detail": 'Cannot send a message to this phone number!!'},
+                    {"detail": 'Sorry, free Twilio account does not allow sending SMS to non verified phone numbers!'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
