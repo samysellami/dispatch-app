@@ -59,7 +59,7 @@ class DispatchAPIViewTestCase(APITestCase):
         url = api_reverse('api-dispatch:notif-create')
         data = {
             'email': 'samy.sellami@hotmail.com',
-            'phoneNumber': '+99600603697',
+            'phoneNumber': '+9960060367',
             'message': 'This is a notification'
         }
         response = self.client.post(url, data, format='json')
