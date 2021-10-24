@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import RegexValidator
 from django.core.validators import EmailValidator
 
 
 class Notification(models.Model):
     phoneNumber_valid = RegexValidator(
-        regex=r"^\+?7?\d{8,15}$", message='invalid phone number, please use the format +7xxxxxxxxxx')
+        regex=r'^\+?7?\d{9,10}$', message='invalid phone number, please use the format +7xxxxxxxxxx')
     email_valid = EmailValidator(message='invalid email, please use the format name@example.com')
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

@@ -16,6 +16,7 @@ from backend.settings import TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
 class DispatchAPIView(APIView):
     permission_classes = []
 
+    # our API contain only the post method, one can decide to include the put, list, and delete method as well
     def post(self, request, *args, **kwargs):
 
         # Sending email using SMTP
@@ -34,21 +35,27 @@ class DispatchAPIView(APIView):
             serializer = NotificationSerializer(data=data, many=False)
             serializer.is_valid(raise_exception=True)
             serializer.save()
-
         except:
             return Response(
                 {"detail": 'Invalid data, please correct your input and try again!!'},
-                status=status.HTTP_400_BAD_REQUEST)
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         # sending the email using the send_mail django function
         if (email is not None) and (len(email) != 0):
-            send_mail(
-                subject,
-                message,
-                None,
-                [email],
-                fail_silently=False
-            )
+            try:
+                send_mail(
+                    subject,
+                    message,
+                    None,
+                    [email],
+                    fail_silently=False
+                )
+            except:
+                return Response(
+                    {"detail": 'Cannot send a notification to this email!'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
         # Sending SMS using TWILIO
         if (phoneNumber is not None) and (len(phoneNumber) != 0):
@@ -64,10 +71,10 @@ class DispatchAPIView(APIView):
                 )
             except:
                 return Response(
-                    {"detail": 'Sorry, free Twilio account does not allow sending SMS to non verified phone numbers!'},
+                    {"detail": 'Sorry, free Twilio accounts do not allow sending SMS to non verified phone numbers!'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
         data_ = serializer.data
-        data_['detail'] = "Thank you for your notification, plase check you email!!"
+        data_['detail'] = "Thank you for your notification, please check you email!!"
         return Response(data_, status=status.HTTP_201_CREATED)
