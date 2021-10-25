@@ -36,7 +36,7 @@ python manage.py test
 -   1 - Clone the project
 
 ```
-git clone https://github.com/samysellami/dispatch-app.git
+git clone git@github.com:samysellami/dispatch-app.git
 ```
 
 -   2 - Build your Docker Image
