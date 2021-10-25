@@ -7,7 +7,11 @@ The possible targets are email and phone number.
 
 The notifications are also stored in the database to keep track of what is being sent.
 
-![Dispatch App](interface.png?raw=true 'Dispatch App')
+<!-- ![Dispatch App](interface.png?raw=true 'Dispatch App') -->
+
+<p align="center">
+  <img src="https://github.com/samysellami/dispatch-app/blob/master/interface.png" width="500"/>
+</p>
 
 ## 2. Main features
 
