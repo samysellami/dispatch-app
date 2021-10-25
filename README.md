@@ -2,49 +2,51 @@
 
 ## 1. About
 
-This application listens for requests, and on receiving a notification it re-dispatches it to multiple targets, based on the input provided.
-
-If an email was provided, the notification is dispatched to it as an email.
-If a phone number is provided, the notification is sent as an SMS.
+An application that listens for requests, and, on receiving a notification, re-dispatches it to multiple targets based on the input provided.
+The possible targets are email and phone number.
 
 The notifications are also stored in the database to keep track of what is being sent.
 
-![Dispatch App](capture.jpg?raw=true 'Dispatch App')
+![Dispatch App](interface.png?raw=true 'Dispatch App')
 
 ## 2. Main features
 
 The application has a frontend and a backend.
 
 The **frontend** was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-. It is composed of some components and has an interface containing the form that enables the user to send a notification. The form data is then sent to the backend and the response is processed to inform the user about the success or the failure of the operation.
+It creates an interface containing the form that enables the user to send a notification.
 
-The **backend** is based on [Django](https://docs.djangoproject.com/). It uses models and views to serialize and process the data coming from the frontend, send the notifications to the specified targets, and send a success/failure response to the frontend.
+The **backend** is based on [Django](https://docs.djangoproject.com/).
+It uses models and views to serialize and process the data, send notifications to the specified targets, and sends a success/failure response to the frontend.
 
-To send SMS **Twilio** was used. Unfortunately, the free version does not allow to send SMS to non verified phone numbers.
+To send SMS, **Twilio** API was used. Unfortunately, the free version does not allow to send SMS to non verified phone numbers.
 
-## 3. Installation and configuration
+## 3. Testing the application
 
-The first thing to do is to clone the repository:
+To run the tests:
+
+```
+python manage.py test
+```
+
+## 4. Installation and running
+
+-   1 - Clone the project
 
 ```
 git clone https://github.com/samysellami/dispatch-app.git
-cd dispatch-app
 ```
 
-## 4. Testing the application
-
-To run all the tests in the project at once, first `cd` into the directory where `manage.py` is, then run the following command:
+-   2 - Build your Docker Image
 
 ```
-django manage.py test
+docker build -t dispatch-app -f Dockerfile .
 ```
 
-## 5. Running the application
-
-To starts a lightweight development Web server on the local machine, run the following command:
+-   3 - Run your Container
 
 ```
-django manage.py runserver
+docker run -it -p 8000:8000 dispatch-app
 ```
 
-By default, the application runs on [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+-   4 - Now open up http://0.0.0.0:8000/
