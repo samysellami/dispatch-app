@@ -41,7 +41,7 @@ class DispatchAPIView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # sending the email using the send_mail django function
+        # Sending the email using the send_mail django function
         if (email is not None) and (len(email) != 0):
             try:
                 send_mail(
