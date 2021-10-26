@@ -24,20 +24,20 @@ It uses models and views to serialize and process the data, send notifications t
 To send SMS, **Twilio** API was used. Unfortunately, _the free version does not allow to send SMS to non verified phone numbers_.,
 (the only verified phone number is the owner number: +79600603696)
 
-## 2. Testing the application
+## 2. Prerequisities
+
+In order to run this container you'll need docker installed.
+
+-   [python 3.6+](https://www.python.org/downloads/)
+-   [docker](https://docs.docker.com/get-docker/)
+
+## 3. Testing the application
 
 To run the tests:
 
 ```
 python manage.py test
 ```
-
-## 3. Prerequisities
-
-In order to run this container you'll need docker installed.
-
--   [python 3.6+](https://www.python.org/downloads/)
--   [docker](https://docs.docker.com/get-docker/)
 
 ## 4. Installation and running
 
