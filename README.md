@@ -1,9 +1,9 @@
-# A django based Dispatch App
+# A django based Dispatch Application
 
 An application that listens for requests, and, on receiving a notification, re-dispatches it to multiple targets based on the input provided.
 The possible targets are email and phone number.
 
-The notifications are also stored in the database to keep track of what is being sent.
+The notifications are also stored in a database to keep track of what is being sent.
 
 <!-- ![Dispatch App](interface.png?raw=true 'Dispatch App') -->
 
@@ -21,7 +21,8 @@ It creates an interface containing the form that enables the user to send a noti
 The **backend** is based on [Django](https://docs.djangoproject.com/).
 It uses models and views to serialize and process the data, send notifications to the specified targets, and sends a success/failure response to the frontend.
 
-To send SMS, **Twilio** API was used. Unfortunately, _the free version does not allow to send SMS to non verified phone numbers_.
+To send SMS, **Twilio** API was used. Unfortunately, _the free version does not allow to send SMS to non verified phone numbers_.,
+(the only verified phone number is the owner number: +79600603696)
 
 ## 2. Testing the application
 
@@ -31,7 +32,14 @@ To run the tests:
 python manage.py test
 ```
 
-## 3. Installation and running
+## 3. Prerequisities
+
+In order to run this container you'll need docker installed.
+
+-   [Linux](https://docs.docker.com/linux/started/)
+-   [docker](https://docs.docker.com/get-docker/)
+
+## 4. Installation and running
 
 -   1 - Clone the project
 
