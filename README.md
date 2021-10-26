@@ -36,7 +36,7 @@ python manage.py test
 
 In order to run this container you'll need docker installed.
 
--   [Linux](https://docs.docker.com/linux/started/)
+-   [python 3.6+](https://www.python.org/downloads/)
 -   [docker](https://docs.docker.com/get-docker/)
 
 ## 4. Installation and running
