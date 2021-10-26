@@ -31,20 +31,13 @@ In order to run this container you'll need docker installed.
 -   [python 3.6+](https://www.python.org/downloads/)
 -   [docker](https://docs.docker.com/get-docker/)
 
-## 3. Testing the application
-
-To run the tests:
-
-```
-python manage.py test
-```
-
-## 4. Installation and running
+## 3. Installation and running
 
 -   1 - Clone the project
 
 ```
 git clone git@github.com:samysellami/dispatch-app.git
+cd dispatch-app
 ```
 
 -   2 - Build your Docker Image
@@ -60,3 +53,11 @@ docker run -it -p 8000:8000 dispatch-app
 ```
 
 -   4 - Now open up http://0.0.0.0:8000/
+
+## 4. Testing the application
+
+To run the tests:
+
+```
+python manage.py test
+```
