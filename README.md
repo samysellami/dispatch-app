@@ -49,7 +49,7 @@ docker build -t dispatch-app -f Dockerfile .
 -   3 - Run your Container
 
 ```
-docker run -it -p 8000:8000 dispatch-app
+docker run -it -p 8000:8000 --env-file .env dispatch-app
 ```
 
 -   4 - Now open up http://0.0.0.0:8000/
